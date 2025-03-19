@@ -31,6 +31,7 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 			}
 			if (!vorhanden){
 				this.add(w.getWord(), w.getFrequency());
+
 			}
 		}
 
