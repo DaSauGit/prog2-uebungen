@@ -1,5 +1,7 @@
 package aufgabe1;
 
+import java.util.Arrays;
+
 /**
  * @author oliverbittel
  * @author Oliver Haase
@@ -14,24 +16,7 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
     }
 
     private void sort() {
-        Word[] clone = fqTable.clone();
-        int biggest = 0;
-        if (fqTable[size] != null) {
-            for (Word w : fqTable) {
-                if (w.getFrequency() >= biggest) {
-                    biggest = w.getFrequency();
-                }
-            }
-            clear();
-            for (int i = biggest; i < 1; i--) {
-                for (Word w : clone) {
-                    if (w.getFrequency() == biggest) {
-                        fqTable[size] = w;
-                        size++;
-                    }
-                }
-            }
-        }
+
     }
 
     @Override
@@ -44,10 +29,6 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
         // throw muss auskommentiert werden!
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Ihr Code:
-
-//        for (int i = this.size(); i < 1; i--) {
-//            fqTable[i] = null;
-//        }
         size = 0;
         fqTable = new Word[DEFAULT_SIZE];
         // ...
@@ -59,24 +40,36 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Ihr Code:
         Word word = new Word(w, f);
+        if (fqTable.length == size) {
+            fqTable = Arrays.copyOf(fqTable, 2 * size);
+        }
         boolean vorhanden = false;
-        if (fqTable[size] != null) {
-            for (Word i : fqTable) {
-                if (i.equals(word)) {
-                    i.addFrequency(f);
-                    vorhanden = true;
-                }
+        for (int i = 0; i < size; i++) {
+            if (word.getWord().equals(fqTable[i].getWord())) {
+                fqTable[i].addFrequency(word.getFrequency());
+                moveToLeft(i);
+                vorhanden = true;
             }
-            if (!vorhanden) {
-                fqTable[size] = new Word(w, f);
-                size++;
+        }
+        if (!vorhanden) {
+            fqTable[size] = word;
+            if (size != 0) {
+                moveToLeft(size);
             }
-        } else {
-            fqTable[size] = new Word(w, f);
             size++;
         }
-        sort();
         // ...
+    }
+
+    private void moveToLeft(int pos) {
+        Word w = fqTable[pos];
+        int i = pos - 1;
+        while (i >= 0 && w.getFrequency() > fqTable[i].getFrequency()) {
+            fqTable[i + 1] = fqTable[i];
+            i--;
+        }
+        fqTable[i + 1] = w;
+
     }
 
     @Override
@@ -94,11 +87,9 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
         // throw muss auskommentiert werden!
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         // Ihr Code:
-        if (fqTable[size] != null) {
-            for (Word i : fqTable) {
-                if (i.getWord().equals(w)) {
-                    return i.getFrequency();
-                }
+        for (int i = 0; i < size; i++) {
+            if (w.equals(fqTable[i].getWord())) {
+                return fqTable[i].getFrequency();
             }
         }
         return 0;

@@ -73,15 +73,15 @@ public class ArrayFrequencyTable_Test {
 		in = new LineNumberReader(new FileReader("Kafka_Der_Prozess.txt", StandardCharsets.UTF_8));
 		String line;
 		
-		// Text einlesen und Häfigkeiten aller Wörter bestimmen:
+		// Text einlesen und Häufigkeiten aller Wörter bestimmen:
 		while ((line = in.readLine()) != null) {
 			String[] wf = line.split("[^a-z^A-Z^ß^ä^ö^ü^Ä^Ö^Ü]+");
 			for (String w: wf) {
 				if (w.length() == 0 || w.length() == 1)
 					continue;
-				System.out.println(w);
+				//System.out.println(w);
 				// Ihr Code:
-
+				tab.add(w);
 			}
 		}	
 		
@@ -91,6 +91,9 @@ public class ArrayFrequencyTable_Test {
 		// Ausgabe der 100 häufigsten Wörter:
 		System.out.println("100 häufigste Wörter:");
 		// Ihr Code
+		FrequencyTable fq = new ArrayFrequencyTable();
+		tab.collectNMostFrequent(100, fq);
+		System.out.println(fq);
 		
 		System.out.println("");		
 		System.out.println("Benötigte Zeit in msec: " + elapsedTime);

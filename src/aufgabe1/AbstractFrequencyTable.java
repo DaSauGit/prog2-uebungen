@@ -39,12 +39,14 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 	@Override
 	public void collectNMostFrequent(int n, FrequencyTable fq) {
 		// Ihr Code:
+		fq.clear();
 		if (n > this.size()){
 			fq.addAll(this);
 		} else{
-			for (int i = 0; i < n-1; i++) {
+			for (int i = 0; i < n; i++) {
 				//wenn die Tabelle schon sortiert ist
-				fq.add(this.get(i).getWord(), this.get(i).getFrequency());
+				Word w = this.get(i);
+				fq.add(w.getWord(), w.getFrequency());
 			}
 		}
 	}
@@ -60,6 +62,7 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 			s.append(", ");
 		}
 		s.append("}");
+		s.append(" size = " + size());
 		return s.toString();
 	}
 }
