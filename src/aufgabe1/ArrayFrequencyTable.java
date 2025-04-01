@@ -48,16 +48,14 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
             if (word.getWord().equals(fqTable[i].getWord())) {
                 fqTable[i].addFrequency(word.getFrequency());
                 moveToLeft(i);
-                vorhanden = true;
+                return;
             }
         }
-        if (!vorhanden) {
-            fqTable[size] = word;
-            if (size != 0) {
-                moveToLeft(size);
-            }
-            size++;
+        fqTable[size] = word;
+        if (size != 0) {
+            moveToLeft(size);
         }
+        size++;
         // ...
     }
 

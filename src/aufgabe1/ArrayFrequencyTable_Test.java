@@ -89,6 +89,7 @@ public class ArrayFrequencyTable_Test {
 		double elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
 		
 		// Ausgabe der 100 häufigsten Wörter:
+
 		System.out.println("100 häufigste Wörter:");
 		// Ihr Code
 		FrequencyTable fq = new ArrayFrequencyTable();

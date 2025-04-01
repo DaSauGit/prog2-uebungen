@@ -26,12 +26,12 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 				Word w2 = this.get(j);
 				if (w.equals(w2)){
 					this.add(w2.getWord());
-					vorhanden = true;
+					return;
 				}
 			}
-			if (!vorhanden){
-				this.add(w.getWord(), w.getFrequency());
-			}
+
+			this.add(w.getWord(), w.getFrequency());
+
 		}
 
 	}
