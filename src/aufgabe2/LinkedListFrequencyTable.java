@@ -38,7 +38,7 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
             Node r = new Node(word, end, end.prev);
             r.prev.next = r;
             p.prev = r;
-            moveLeft(p);
+            moveLeft(r);
             size++;
         }
     }
