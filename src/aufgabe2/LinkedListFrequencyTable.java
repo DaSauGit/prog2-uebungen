@@ -23,40 +23,67 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         size = 0;
         begin = new Node(null, null, null);
         end = new Node(null, null, begin);
+        begin.next = end;
     }
 
     @Override
     public void add(String w, int f) {
         Word word = new Word(w, f);
         Node p = begin.next;
-        while (p.next != null) {
+        //wort schon vorhanden
+        while (p != end) {
             if (w.equals(p.data.getWord())) {
                 p.data.addFrequency(f);
                 moveLeft(p);
                 return;
             }
-            Node r = new Node(word, end, end.prev);
-            r.prev.next = r;
-            p.prev = r;
-            moveLeft(r);
-            size++;
+            p = p.next;
         }
+        //Wort neu
+        Node r = new Node(word, end, end.prev);
+        r.prev.next = r;
+        p.prev = r;
+        moveLeft(r);
+        size++;
     }
 
     private void moveLeft(Node n) {
-        int freq = n.data.getFrequency();
-        while (n.prev.data.getFrequency() > freq) {
-            n.data = n.prev.data;
+        while (n.prev != begin && n.data.getFrequency() > n.prev.data.getFrequency()) {
+            // Knoten mit dem vorherigen Knoten tauschen
+            Node prev = n.prev;
+            Node next = n.next;
+
+            prev.next = next;
+            next.prev = prev;
+
+            n.prev = prev.prev;
+            n.next = prev;
+
+            if (prev.prev != null) {
+                prev.prev.next = n;
+            }
+            prev.prev = n;
         }
     }
 
     @Override
     public Word get(int pos) {
-        return null;
+        Node t = begin.next;
+        for (int i = 0; i < pos; i++) {
+            t = t.next;
+        }
+        return t.data;
     }
 
     @Override
     public int get(String w) {
+        Node p = begin.next;
+        for (int i = 0; i < size; i++) {
+            if (w.equals(p.data.getWord())) {
+                return p.data.getFrequency();
+            }
+            p = p.next;
+        }
         return 0;
     }
 

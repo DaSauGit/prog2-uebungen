@@ -21,7 +21,6 @@ public abstract class AbstractFrequencyTable implements FrequencyTable {
 		// Ihr Code:
 		for (int i = 0; i < fq.size(); i++) {
 			Word w = fq.get(i);
-			boolean vorhanden = false;
 			for (int j = 0; j < this.size(); j++) {
 				Word w2 = this.get(j);
 				if (w.equals(w2)){
