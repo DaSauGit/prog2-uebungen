@@ -1,3 +1,4 @@
+// Ihr Code:
 package aufgabe2;
 
 import aufgabe1.AbstractFrequencyTable;
@@ -99,3 +100,4 @@ public class LinkedListFrequencyTable extends AbstractFrequencyTable {
         }
     }
 }
+// ...
