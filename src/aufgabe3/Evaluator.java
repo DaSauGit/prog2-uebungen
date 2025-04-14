@@ -104,7 +104,7 @@ public class Evaluator {
         }
     }
 
-    private static void doShift() {
+    private void doShift() {
         // Ihr Code:
         stack[size++] = token;
         token = tokenizer.nextToken();
@@ -129,6 +129,10 @@ public class Evaluator {
             doReduceKlValKl();
             return true;
         } // Ihr Code:
+        else if (isVal(stack[size-3]) && isOp(stack[size -2]) && isVal(stack[size-1]) && (token == KL_ZU || token == DOLLAR)) {
+            doReduceValOpVal();
+            return true;
+        }
         // ...
 
         else {
@@ -136,18 +140,40 @@ public class Evaluator {
         }
     }
 
-    private static void doReduceKlValKl() {
+    private void doReduceKlValKl() {
         // Ihr Code:
+        stack[size -3] = null;
+        stack[size -1] = null;
         // ...
     }
 
-    private static void doReduceValOpVal() {
+    private void doReduceValOpVal() {
         // Ihr Code:
+        double ergebnis = 0;
+        double val1 = (double) stack[size -3];
+        double val2 = (double) stack[size -1];
+        if (stack[size -2] == MULT) {
+            ergebnis = val1 * val2;
+        } else if (stack[size -2] == PLUS) {
+            ergebnis = val1 + val2;
+        } else if (stack[size -2] == POWER) {
+            ergebnis = val1;
+            for (int i = 0; i < val2; i++) {
+                ergebnis = ergebnis * val1;
+            }
+            //Math.pow(val1, val2);
+        }
+        stack[size -3] = null;
+        stack[size -2] = null;
+        stack[size -1] = ergebnis;
         // ...
     }
 
-    private static boolean accept() {
+    private boolean accept() {
         // Ihr Code:
+        if (stack[size - 2] == DOLLAR && isVal(stack[size -1]) && token == DOLLAR) {
+            return true;
+        }
         // ...
         return false;
     }

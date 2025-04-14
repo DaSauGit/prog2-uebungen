@@ -1,9 +1,9 @@
 /*
  * class Tokenizer
- * Zerlegt einen String in eine Folge von Tokens.
+ * zerlegt einen String in eine Folge von Tokens.
  * Tokens: +, *, , (, ), $ oder Gleitkommazahl (ohne Vorzeichen und Exponent).
  * ^ oist der Potenzoperator.
- * Gleitkommazahlen können  mit Dezimalpunkt (z.B. 3.24 statt 3,24) eingegeben werden
+ * Gleitkommazahlen können mit Dezimalpunkt (z.B. 3.24 statt 3,24) eingegeben werden
  *
  * O. Bittel; 24.2.2019
  */

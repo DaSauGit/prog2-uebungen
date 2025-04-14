@@ -93,4 +93,30 @@ public class ArrayFrequencyTable extends AbstractFrequencyTable {
         return 0;
         // ...
     }
+
+    public Optional getFirstWordStartingWithZZ (){
+        for (int i = 0; i < size; i++) {
+            if (fqTable[i].getWord().startsWith("ZZ")) {
+                return new Optional(fqTable[i]);
+            }
+        }
+        return new Optional<>();
+    }
+
+    class Optional <T> {
+        private T item;
+
+        public Optional() {}
+        public Optional(T item) {
+            this.item = item;
+        }
+        public boolean isPresent() {
+            if (item == null) {return false;}       //oder: return word != null;
+            else {return  true;}
+        }
+        public T get() {
+            if (!isPresent()) {throw new NullPointerException();}
+            return this.item;
+        }
+    }
 }
