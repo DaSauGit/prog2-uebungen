@@ -89,7 +89,7 @@ public class Evaluator {
             doShift();
             return true;
         }
-        else if ((isVal(stack[size -191]) && isOp(stack[size -2]) && isVal(stack[size -3])) // Regel 9
+        else if ((isVal(stack[size -1]) && isOp(stack[size -2]) && isVal(stack[size -3])) // Regel 9
                 && isOp(token)) {
             if (stack[size -2] == PLUS && (token == MULT || token == POWER)) {
                 doShift();
@@ -186,13 +186,22 @@ public class Evaluator {
      * Liest von der Konsole eine Folge von Zeilen, wertet jede Zeile als
      * Ausdruck aus und gibt seinen Wert aus. (repl = read-evaluate-print-loop).
      */
-    public void repl() {
+    public static void repl() {
         Scanner in = new Scanner(System.in);
         System.out.print(ANSI_BLUE + ">> ");
+        Evaluator evaluator = new Evaluator();
 
         while (in.hasNextLine()) {
             String line = in.nextLine();
             // Ihr Code:
+            if (line.equals("end")) {
+                System.out.println("Bye!");
+                break;
+            } else if (evaluator.eval(line) == null) {
+                System.out.println("!!! error");
+            } else {
+                System.out.println(evaluator.eval(line));
+            }
             // ...
             System.out.print(ANSI_BLUE + ">> ");
         }
@@ -205,30 +214,30 @@ public class Evaluator {
      */
     public static void main(String[] args) {
         // Zum Testen, später auskommentieren:
-        String s1 = "1+2";
-        String s2 = "2^10+5";
-        String s3 = "5+2^10";
-        String s4 = "(2+3*4+4)^2";
-        String s5 = "(2+3*4+4))*2";
-        String s6 = "2+3**4";
-        String s7 = "2^2^3";
-        String s8 = "2^2*5";
-        String s9 = "1+(2+(3+(4+(5+6))))";
-        String s10 = "1+2+3+4+5+6";
+//        String s1 = "1+2";
+//        String s2 = "2^10+5";
+//        String s3 = "5+2^10";
+//        String s4 = "(2+3*4+4)^2";
+//        String s5 = "(2+3*4+4))*2";
+//        String s6 = "2+3**4";
+//        String s7 = "2^2^3";
+//        String s8 = "2^2*5";
+//        String s9 = "1+(2+(3+(4+(5+6))))";
+//        String s10 = "1+2+3+4+5+6";
+//
+//        Evaluator evaluator = new Evaluator();
+//
+//        System.out.println(evaluator.eval(s1));	// 3.0
+//        System.out.println(evaluator.eval(s2));	// 1029.0
+//        System.out.println(evaluator.eval(s3));	// 1029.0
+//        System.out.println(evaluator.eval(s4));	// 324.0
+//        System.out.println(evaluator.eval(s5));	// null; Syntaxfehler
+//        System.out.println(evaluator.eval(s6));	// null; Syntaxfehler
+//        System.out.println(evaluator.eval(s7));	// 64.0
+//        System.out.println(evaluator.eval(s8));	// 20.0
+//        System.out.println(evaluator.eval(s9));	// 21.0
+//        System.out.println(evaluator.eval(s10));	// 21.0
 
-        Evaluator evaluator = new Evaluator();
-
-        System.out.println(evaluator.eval(s1));	// 3.0
-        System.out.println(evaluator.eval(s2));	// 1029.0
-        System.out.println(evaluator.eval(s3));	// 1029.0
-        System.out.println(evaluator.eval(s4));	// 324.0
-        System.out.println(evaluator.eval(s5));	// null; Syntaxfehler
-        System.out.println(evaluator.eval(s6));	// null; Syntaxfehler
-        System.out.println(evaluator.eval(s7));	// 64.0
-        System.out.println(evaluator.eval(s8));	// 20.0
-        System.out.println(evaluator.eval(s9));	// 21.0
-        System.out.println(evaluator.eval(s10));	// 21.0
-
-        //repl();
+        repl();
     }
 }
