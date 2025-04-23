@@ -194,7 +194,7 @@ public class Evaluator {
         while (in.hasNextLine()) {
             String line = in.nextLine();
             // Ihr Code:
-            if (line.equals("end")) {
+            if (line.toLowerCase().equals("end")) {
                 System.out.println("Bye!");
                 break;
             } else if (evaluator.eval(line) == null) {
