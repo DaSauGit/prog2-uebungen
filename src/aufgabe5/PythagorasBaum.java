@@ -1,9 +1,20 @@
 package aufgabe5;
 
+import org.w3c.dom.css.RGBColor;
+
+import java.awt.*;
+
 public class PythagorasBaum {
     static void draw(double x, double y, double w, double a) {
         double sigma = Math.toRadians(30);
-        if (w >= 0.01) {
+        if (w >= 0.02) {
+            if (w >= 0.3) {
+                StdDraw.setPenColor(new Color(0x5b3a29));
+            } else if (w >= 0.05) {
+                StdDraw.setPenColor(new Color(0x974C26));
+            } else {
+                StdDraw.setPenColor(new Color(0x20C320));
+            }
             double alpha = a;
             double s = w * Math.sin(alpha);
             double c = w * Math.cos(alpha);
@@ -17,9 +28,9 @@ public class PythagorasBaum {
             double xd = x - s;
             double yd = y + c;
             //Quadrat zeichnen
-            StdDraw.line(xa, ya, xb, yb);
+            //StdDraw.line(xa, ya, xb, yb);
             StdDraw.line(xb, yb, xc, yc);
-            StdDraw.line(xc, yc, xd, yd);
+            //StdDraw.line(xc, yc, xd, yd);
             StdDraw.line(xd, yd, xa, ya);
             //Koordinaten Dreieck
             double u = w * Math.cos(sigma);
@@ -27,8 +38,8 @@ public class PythagorasBaum {
             double xe = xd + (u * Math.cos(sigma + alpha));
             double ye = yd + (u * Math.sin(sigma + alpha));
             //Dreieck zeichnen
-            StdDraw.line(xd, yd, xe, ye);
-            StdDraw.line(xe, ye, xc, yc);
+            //StdDraw.line(xd, yd, xe, ye);
+            //StdDraw.line(xe, ye, xc, yc);
             //Rekursion
             double alpha1 = alpha + sigma;
             draw(xd, yd, u, alpha1);
