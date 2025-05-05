@@ -1,11 +1,12 @@
 package aufgabe5;
 
 public class PythagorasBaum {
-    static void draw(double x, double y, double w, double alpha) {
+    static void draw(double x, double y, double w, double a) {
         double sigma = Math.toRadians(30);
-        if (w >= 0.1) {
-            double s = w * Math.cos(alpha);
-            double c = w * Math.sin(alpha);
+        if (w >= 0.01) {
+            double alpha = a;
+            double s = w * Math.sin(alpha);
+            double c = w * Math.cos(alpha);
             //Koordinaten Quadrat
             double xa = x;
             double ya = y;
@@ -23,17 +24,22 @@ public class PythagorasBaum {
             //Koordinaten Dreieck
             double u = w * Math.cos(sigma);
             double v = w * Math.sin(sigma);
-            double xe = xd + u * Math.cos(sigma + alpha);
-            double ye = yd + u * Math.sin(sigma + alpha);
+            double xe = xd + (u * Math.cos(sigma + alpha));
+            double ye = yd + (u * Math.sin(sigma + alpha));
             //Dreieck zeichnen
             StdDraw.line(xd, yd, xe, ye);
             StdDraw.line(xe, ye, xc, yc);
+            //Rekursion
+            double alpha1 = alpha + sigma;
+            draw(xd, yd, u, alpha1);
+            double alpha2 = (alpha + sigma) + Math.toRadians(270);
+            draw(xe, ye, v, alpha2 );
         }
     }
 
     public static void main(String[] args) {
         StdDraw.setXscale(-6, 6);
         StdDraw.setYscale(-1, 11);
-        draw(0, 0, 1, 1);
+        draw(0, 0, 1, Math.toRadians(0));
     }
 }
