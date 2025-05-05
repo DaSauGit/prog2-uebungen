@@ -8,12 +8,12 @@ public class PythagorasBaum {
     static void draw(double x, double y, double w, double a) {
         double sigma = Math.toRadians(30);
         if (w >= 0.02) {
-            if (w >= 0.3) {
+            if (w >= 0.2) {
                 StdDraw.setPenColor(new Color(0x5b3a29));
             } else if (w >= 0.05) {
                 StdDraw.setPenColor(new Color(0x974C26));
             } else {
-                StdDraw.setPenColor(new Color(0x20C320));
+                StdDraw.setPenColor(new Color(0x008000));
             }
             double alpha = a;
             double s = w * Math.sin(alpha);
@@ -51,6 +51,6 @@ public class PythagorasBaum {
     public static void main(String[] args) {
         StdDraw.setXscale(-6, 6);
         StdDraw.setYscale(-1, 11);
-        draw(0, 0, 1, Math.toRadians(0));
+        draw(0, 0, 1.5, Math.toRadians(0));
     }
 }
