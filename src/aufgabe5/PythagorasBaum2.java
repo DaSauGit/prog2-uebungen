@@ -1,9 +1,10 @@
 package aufgabe5;
 import java.awt.*;
 
-public class PythagorasBaum {
+public class PythagorasBaum2 {
     static void draw(double x, double y, double w, double a) {
-        double sigma = Math.toRadians(30);
+        double sigma = Math.toRadians(Math.random() * 90 + 0);
+        double höhe = Math.toRadians(Math.random() * 1.5 + 0.5);
         if (w >= 0.02) {
             if (w >= 0.2) {
                 StdDraw.setPenColor(new Color(0x5b3a29));
@@ -21,9 +22,9 @@ public class PythagorasBaum {
             double xb = x + c;
             double yb = y + s;
             double xc = x + c - s;
-            double yc = y + s + c;
+            double yc = y + s + c + höhe;
             double xd = x - s;
-            double yd = y + c;
+            double yd = y + c + höhe;
             //Quadrat zeichnen
             //StdDraw.line(xa, ya, xb, yb);
             StdDraw.line(xb, yb, xc, yc);
@@ -48,6 +49,9 @@ public class PythagorasBaum {
     public static void main(String[] args) {
         StdDraw.setXscale(-6, 6);
         StdDraw.setYscale(-1, 11);
-        draw(0, 0, 1.5, Math.toRadians(0));
+        StdDraw.show(0);
+        draw(0, 0, 1, Math.toRadians(0));
+        StdDraw.show(0);
     }
 }
+
