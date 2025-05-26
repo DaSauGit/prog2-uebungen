@@ -1,6 +1,9 @@
 package aufgabe7;
 
 public class BitonicArray {
+
+    //O-Notation: O(n)
+    //T(n) = c1 + c2 * n
     public static int findPeakIterative(int[] a) {
         int maxpos = 0;
         for (int i = 0; i < a.length; i++) {
@@ -12,6 +15,8 @@ public class BitonicArray {
         return maxpos;
     }
 
+    //O-Notation: O(n)
+    //T(n) =
     public static int findPeakDivideAndConquer(int[] a) {
         return f(0, a.length - 1, a);
     }
@@ -32,4 +37,17 @@ public class BitonicArray {
             }
         }
     }
+    /**
+     * Iterativ
+     * 10000000 / 3129369 = 0,3129
+     * 100000000 / 33927811 = 0,3392
+     * --> ungefähr gleich --> konstant
+     * 1000000000 ~ 326050000 microsec, da linear
+     *
+     * Teile-Herrsche
+     * 10000000 / 3586351 = 0,3586
+     * 100000000 / 39590127 = 0,3959
+     * --> ungefähr gleich --> konstant
+     * 1000000000 ~ 377250000 microsec, da linear
+     */
 }
