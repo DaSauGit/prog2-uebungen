@@ -46,7 +46,7 @@ public class BitonicArray {
      * Iterativ
      * 10000000 / 3129369 = 0,3129
      * 100000000 / 33927811 = 0,3392
-     * --> ungefähr gleich --> konstant
+     * ⇾ ungefähr gleich ⇾ konstant
      * 1000000000 ~ 326050000 microsec, da linear
      *
      * Teile-Herrsche
