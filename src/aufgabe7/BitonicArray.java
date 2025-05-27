@@ -47,7 +47,7 @@ public class BitonicArray {
      * 10000000 / 3129369 = 0,3129
      * 100000000 / 33927811 = 0,3392
      * ⇾ ungefähr gleich ⇾ konstant
-     * 1 000 000 000 ~ 326 050 000 microsecond, da linear
+     * 1000000000 ~ 326050000 microsecond, da linear
      *
      * Teile-Herrsche
      * 1235 ∗ 9/8 = 1389,375 microsecond für 1000000000
