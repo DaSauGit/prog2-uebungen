@@ -6,4 +6,5 @@ import java.util.Set;
 public interface Expression {
     double eval(Map<String, Double> varBel);
 //    Set<String> getVars();
+
 }
