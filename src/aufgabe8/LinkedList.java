@@ -15,39 +15,20 @@ public class LinkedList {
         size = 0;
     }
 
-    private static LinkedList merge(LinkedList a, LinkedList b, LinkedList c) {
-        //in beiden was drinnen
-        Node aNode = a.head;
-        Node bNode = b.head;
-        while (aNode != null && bNode != null) {
-            if (aNode.value <= bNode.value) {
-                c.add(aNode.value);
-                aNode = aNode.next;
-            } else {
-                c.add(bNode.value);
-                bNode = bNode.next;
-            }
-        }
-        //in einem was drinnen, anderes leer
-        if (aNode == null && bNode != null) {
-            while (bNode != null) {
-                c.add(bNode.value);
-                bNode = bNode.next;
-            }
-        } else if (aNode != null && bNode == null) {
-            while (aNode != null) {
-                c.add(aNode.value);
-                aNode = aNode.next;
-            }
-        }
-
-        return c;
-    }
-
     public LinkedList add(int value) {
         head = new Node(value, head);
         size++;
         return this;
+    }
+
+    private static class Node {
+        int value;
+        Node next;
+
+        Node(int value, Node next) {
+            this.value = value;
+            this.next = next;
+        }
     }
 
     @Override
@@ -101,13 +82,33 @@ public class LinkedList {
         return merge(left, right, b);
     }
 
-    private static class Node {
-        int value;
-        Node next;
-
-        Node(int value, Node next) {
-            this.value = value;
-            this.next = next;
+    private static LinkedList merge(LinkedList a, LinkedList b, LinkedList c) {
+        //in beiden was drinnen
+        Node aNode = a.head;
+        Node bNode = b.head;
+        while (aNode != null && bNode != null) {
+            if (aNode.value <= bNode.value) {
+                c.add(aNode.value);
+                aNode = aNode.next;
+            } else {
+                c.add(bNode.value);
+                bNode = bNode.next;
+            }
         }
+        //in einem was drinnen, anderes leer
+        if (aNode == null && bNode != null) {
+            while (bNode != null) {
+                c.add(bNode.value);
+                bNode = bNode.next;
+            }
+        } else if (aNode != null && bNode == null) {
+            while (aNode != null) {
+                c.add(aNode.value);
+                aNode = aNode.next;
+            }
+        }
+
+        return c;
     }
+
 }
