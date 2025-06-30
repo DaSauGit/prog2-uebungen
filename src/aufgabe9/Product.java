@@ -3,9 +3,9 @@ package aufgabe9;
 import java.util.Map;
 
 public class Product extends CompoundExpression{
-    double produkt;
+    Expression produkt;
     public Product(Expression a, Expression b){
-        // a * b
+
     }
 
     @Override

@@ -6,7 +6,9 @@ public class Sum extends CompoundExpression{
     double summe;
 
     public Sum(Expression a, Expression b){
-        //summe = a + b;
+//        Node sum = new Node("+");
+//        sum.left = a;
+//        sum.right = b;
     }
 
     @Override
